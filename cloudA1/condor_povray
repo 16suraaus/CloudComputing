@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+
+args=sys.argv
+
+#check that input is correct length
+if len(args) is not 6:
+   print("incorrect input")
+   sys.exit()
+
+input=args[1]
+output=args[2]
+frames=args[3]
+xsize=args[4]
+ysize=args[5]
+
+
+count=0
+accessoryfile=""
+info=open(input).readlines()
+
+#this line grabs the necessary files such as WRC.... that are necessary to run the pov
+for line in info:
+    if line.startswith("#include"):
+       accessoryfile+=", "+line[10:len(line)-2]
+
+accessoryfile = input+ accessoryfile
+#this large loop creates the test.submit files
+for item in range(int(frames)):
+    file=open("test.submit"+str(item+1),"w+")
+    file.write("universe = vanilla\n")	
+    file.write("executable = /afs/nd.edu/user37/ccl/software/external/povray/bin/povray\n")
+    file.write("arguments = +I"+input +" +Oframes"+str(item+1).zfill(5) +".png +H"+ysize +" +W"+xsize +" +K"+ str(count)+"\n")
+    file.write("output = .output\n")
+    file.write("should_transfer_files = yes\n")
+    file.write("transfer_input_files = "+accessoryfile+"\n") 
+    file.write("when_to_transfer_output = on_exit\n")
+    file.write("log = test.logfile\n")
+    file.write("queue\n")
+    #count increases by 1/frames to ensure an equal spread of the frames
+    count+=1./int(frames)
+    #submit condor job
+    command = "condor_submit test.submit" +str(item+1)
+    file.close()
+    os.system(command)
+    #delete the submit file
+    deletecommand = "rm test.submit"+str(item+1)
+    os.system(deletecommand)
+
+#display message to indicate jobs are in progress
+print("\nWaiting for jobs to complete\n\n")
+os.system("condor_wait test.logfile")
+
+#once jobs are done compile the movie and remove the frames file to avoid clutter.
+os.system("ffmpeg -r 10 -i frames%05d.png -r ntsc "+output)
+os.system("rm frames*")
+    
+
+    
+
+
+		 
+

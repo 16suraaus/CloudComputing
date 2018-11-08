@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+<h1>Homework A1</h1>
+<h4>Austin Sura</h4>
+<h3>Question 1.</h3>
+<p>Here is a table which displays the resolution size, the time it took to create one frame, and the extrapolated time to 1 minute of animation.</p>
+<table>
+  <tr>
+    <th>Resolution</th>
+    <th>Time for Single Frame</th>
+    <th>Extrapolated Time for One Minute</th>
+  </tr>
+  <tr>
+    <td>320x400</td>
+    <td>52.15 seconds</td>
+    <td>8 hours 41 minutes 30 seconds</td>
+  </tr>
+  <tr>
+    <td>640x480</td>
+    <td>2 minutes 4.25 seconds</td>
+    <td>20 hours 42 minutes 27 seconds</td>
+  </tr>
+  <tr>
+    <td>1280x720</td>
+    <td>6 minutes 10.44 seconds</td>
+    <td>61 hours 44 minutes 24 seconds</td>
+  </tr>
+  <tr>
+    <td>1920x1080</td>
+    <td>13 minutes 49.52 seconds</td>
+    <td>138 hours 15 minutes 12 seconds</td>
+  </tr>
+
+</table>
+
+<h3>Question 2.</h3>
+<h4>Condor for 320x400</h4>
+<p>Looking at the data from the 320x400 movie condor run, there was a peak of 211 jobs running on two separate occasions. The slowest job took 86 seconds, while the fastest job completed in 22 seconds. The graph of the job completions was roughly linear in the middle, with flatness on both the beginning and the end. So from that perspective the work proceeded relatively smoothly. An unusual occurence of this run was the fact that I submitted 600 jobs, but the data shows that 601 jobs were completed. I am not sure how this occurred, possibly one job was ran twice due to some sort of corruption. Here is the link to this analysis page: <a href="http://condorlog.cse.nd.edu/logs/75/1f/751f30a176594c4db40d30ff8c549615/">320x400data</a>.</p>
+<p>320x400 log:  <a href="rubik320.log">320log</a>   movie: <a href="rubik320.mpg">320movie</a></p> 
+<h4>Condor for 640x480</h4>
+<p>Analyzing the data from the 640x480 movie condor run, there was a long period of time, over a minute, when 224 jobs were running. A similar plateau occurred at 340 jobs before eventually reaching a peak of 438 jobs running simultaneously. Once again the graph of jobs completed was nearly linear in the middle, with the plateaus at the beginning and end. The fastest job was completed in a quick 48 seconds, about five times faster than the slowest which took 242 seconds. This run was a perfect 600 for 600. No jobs were vacated or suspended. Here is the link to this analysis page: <a href="http://condorlog.cse.nd.edu/logs/89/2b/892b6831e9a27643c9514e348130a5dc/">640x480data</a>.</p> 
+<p>640x480 log:  <a href="rubik640.log">640log</a>   movie: <a href="rubik640.mpg">640movie</a></p>
+<h4>Condor for 1280x720</h4>
+<p>From the data of the 1280x720 movie condor run we can see that there were 3 distinct plateus of jobs running throughout the process at 193, 322, and 474 jobs. Interestingly enough, at this resolution the peak number of jobs finally reached the entire 600 for a substantial length of time. And the the jobs completed graph followed a similar shape as the previous two runs. This indicates the process was running relatively smoothly most of the time. The slowest job clocked in at 766 seconds and the fastest was 154 seconds. Once again this run did not have anything unusual in terms of the number of jobs submitted and executed. 600 were submitted and 600 were executed. Here is the link to this analysis page: <a href="http://condorlog.cse.nd.edu/logs/c9/cc/c9ccbca547eecbce0cbcf3b191dabfc4/">1280x720data</a>.</p>
+<p>1280x720 log:  <a href="rubik1280.log">1280log</a>   movie: <a href="rubik1280.mpg">1280movie</a></p>
+<h4>Condor for 1920x1080</h4>
+<p>Finally, looking at the data for the largest resolution movie condor run we see five different plateaus of jobs running on the way up to 600 total jobs. The plateaus occured at 75, 193, 291, 381 and 484 before reaching 600. Since these jobs took the longest by far, the peak at 600 jobs was very substantial. The jobs completed graph had a bit of different shape with a flattening in the middle after a steep slope of jobs completing. The fastest job took 344 seconds, while the slowest took just under 26 minutes at 1552 seconds. That job was nearly 100 seconds slower than the next closest job. Interestingly, in this run was the first instance of vacated events of which there were 7. The vacated jobs led to the total time of this run to be quite substantial at 26 minutes 23 seconds, although it is obviously much faster than running on a single computer as displayed in the charts above. Here is the link to this analysis page: <a href ="http://condorlog.cse.nd.edu/logs/ba/5e/ba5ed03327462ca4253427796caa4b76/">1920x1080data</a>.</p>
+<p>1920x1080 log:  <a href="rubik1920.log">1920log</a>   movie: <a href="rubik1920.mpg">1920movie</a></p>
+</body>
+</html>
